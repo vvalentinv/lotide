@@ -1,7 +1,7 @@
 // FUNCTION IMPLEMENTATION
 const assertEqual = function(actual, expected) {
   let passed = "✅✅✅ Passed";
-  let failed = "🛑🛑🛑Failed";
+  let failed = "🛑🛑🛑 Failed";
   let isEqual = true;
   for (let i = 1; i < actual.length; i++) {
     if (actual[i] !== expected[i])
