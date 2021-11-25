@@ -1,9 +1,3 @@
-// FUNCTION IMPLEMENTATION
-const assertEqual = function(actual, expected) {
-  let passed = "✅✅✅ Passed";
-  let failed = "🛑🛑🛑Failed";
-  actual === expected ? console.log(`Assertion ${passed}: [${actual}] === [${expected}]`) : console.log(`Assertion ${failed}: [${actual}] !== [${expected}]`);
-};
 
 const eqArrays = function(actual, expected) {
   let eqArr = true;
@@ -16,18 +10,46 @@ const eqArrays = function(actual, expected) {
   return eqArr;
 };
 
+const assertArraysEqual = function(actual, expected) {
+  let passed = "Assertion ✅✅✅ Passed";
+  let failed = "Assertion 🛑🛑🛑 Failed";
+  let printAct = " First Array:";
+  let printExp = "Second Array:";
+  let isItEqual = eqArrays(actual, expected);
+  for (let i = 0; i < actual.length; i++) {
+    printAct += actual[i] + " " + typeof actual[i] + ", ";
+    printExp += expected[i] + " " + typeof expected[i] + ", ";
+  }
+  isItEqual ? console.log(`${passed}:\n${printAct}\n${printExp}`) : console.log(`${failed}:\n${printAct}\n${printExp}`);
+};
+
+// ACTUAL FUNCTION
+const middle = function(array) {
+  //...
+  const result = [];
+  const arrLength = array.length;
+  if (arrLength === 0 || arrLength === 1 || arrLength === 2) {
+    return result;
+  } else if (arrLength % 2 === 1) {
+    result.push(Math.ceil(arrLength / 2));
+  } else {
+    result.push(arrLength / 2);
+    result.push((arrLength / 2) + 1);
+  }
+  return result;
+};
+
 // TEST CODE
-// assertEqual("Lighthouse Labs", "Bootcamp");
-// assertEqual(1, 1);
+// middle([1]) // => []
+// middle([1, 2]) // => []
+// middle([1, 2, 3]) // => [2]
+// middle([1, 2, 3, 4, 5]) // => [3]
+// middle([1, 2, 3, 4]) // => [2, 3]
+// middle([1, 2, 3, 4, 5, 6]) // => [3, 4]
 
-// eqArrays([1, 2, 3], [1, 2, 3]) // => true
-// eqArrays([1, 2, 3], [3, 2, 1]) // => false
-
-// eqArrays(["1", "2", "3"], ["1", "2", "3"]) // => true
-// eqArrays(["1", "2", "3"], ["1", "2", 3]) // => false
-
-assertEqual(eqArrays([1, 2, 3], [1, 2, 3]), true); // => should PASS
-assertEqual(eqArrays([1, 2, 3], [3, 2, 1]), true); // => should fail
-
-assertEqual(eqArrays(["1", "2", "3"], ["1", "2", "3"]), true); // => should PASS
-assertEqual(eqArrays(["1", "2", "3"], ["1", "2", 3]), true); // => should fail
+assertArraysEqual(middle([1]), []); // => should PASS
+assertArraysEqual(middle([1, 2]), []); // => should PASS
+assertArraysEqual(middle([1, 2, 3]), [2]); // => should PASS
+assertArraysEqual(middle([1, 2, 3, 4, 5]), [3]);// => should PASS
+assertArraysEqual(middle([1, 2, 3, 4]), [2, 3]);// => should PASS
+assertArraysEqual(middle([1, 2, 3, 4, 5, 6]), [3, 4]);// => should PASS
