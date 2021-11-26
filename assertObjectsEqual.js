@@ -1,14 +1,14 @@
 // FUNCTION IMPLEMENTATION
-const assertEqual = function(actual, expected) {
-  let passed = "✅✅✅ Passed";
-  let failed = "🛑🛑🛑Failed";
-  actual === expected ? console.log(`Assertion ${passed}: [${actual}] === [${expected}]`) : console.log(`Assertion ${failed}: [${actual}] !== [${expected}]`);
-};
+
 
 const eqArrays = function(actual, expected) {
-  let eqArr = true;
-  for (const index in actual) {
-    if (actual[index] !== expected[index])
+  let eqArr = false;
+  for (const elem of actual) {
+    for (const el of expected) {
+      if (el === elem)
+        eqArr = true;
+    }
+    if (!eqArr)
       return false;
   }
   return eqArr;
@@ -33,8 +33,8 @@ const findKeyByValue = function(obj, val) {
 const assertObjectsEqual = function(actual, expected) {
   // Implement me!
   const inspect = require('util').inspect;
-  eqObjects(actual,expected) ? console.log(`✅✅✅ Assertion Passed:\n[object ${inspect(actual)}]\n[object ${inspect(expected)}]`) 
-  : console.log(`🛑🛑🛑 Assertion Failed:\n[object ${inspect(actual)}]\n[object ${inspect(expected)}]`);
+  eqObjects(actual,expected) ? console.log(`✅✅✅ Assertion Passed:\n[object ${inspect(actual)}]\n[object ${inspect(expected)}]`)
+    : console.log(`🛑🛑🛑 Assertion Failed:\n[object ${inspect(actual)}]\n[object ${inspect(expected)}]`);
 
 };
 

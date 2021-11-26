@@ -6,9 +6,13 @@ const assertEqual = function(actual, expected) {
 };
 
 const eqArrays = function(actual, expected) {
-  let eqArr = true;
-  for (const index in actual) {
-    if (actual[index] !== expected[index])
+  let eqArr = false;
+  for (const elem of actual) {
+    for (const el of expected) {
+      if (el === elem)
+        eqArr = true;
+    }
+    if (!eqArr)
       return false;
   }
   return eqArr;
