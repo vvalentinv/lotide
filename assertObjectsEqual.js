@@ -28,6 +28,16 @@ const findKeyByValue = function(obj, val) {
   return undefined;
 };
 
+
+// FUNCTION IMPLEMENTATION
+const assertObjectsEqual = function(actual, expected) {
+  // Implement me!
+  const inspect = require('util').inspect;
+  eqObjects(actual,expected) ? console.log(`✅✅✅ Assertion Passed:\n[object ${inspect(actual)}]\n[object ${inspect(expected)}]`) 
+  : console.log(`🛑🛑🛑 Assertion Failed:\n[object ${inspect(actual)}]\n[object ${inspect(expected)}]`);
+
+};
+
 // Returns true if both objects have identical keys with identical values.
 // Otherwise you get back a big fat false!
 const eqObjects = function(object1, object2) {
@@ -39,13 +49,11 @@ const eqObjects = function(object1, object2) {
     if (!keyAtObject2)
       return false;
     if (Array.isArray(object1[key1])) {
-      console.log(object2[keyAtObject2]);
       if (eqArrays(object1[key1],object2[keyAtObject2]))
         isEqual = true;
     } else {
       if (object1[key1] === object2[keyAtObject2])
         isEqual = true;
-      console.log(isEqual);
     }
     if (!isEqual)
       return false;
@@ -54,20 +62,20 @@ const eqObjects = function(object1, object2) {
 };
 
 
-//TEST CODE
-assertEqual("Lighthouse Labs", "Bootcamp");
-assertEqual(1, 1);
+// TEST CODE
+// assertEqual("Lighthouse Labs", "Bootcamp");
+// assertEqual(1, 1);
 
 const ab = { a: "1", b: "2" };
 const ba = { b: "2", a: "1" };
-assertEqual(eqObjects(ab, ba),true); // => true
+assertObjectsEqual(ab, ba); // => true
 
 const abc = { a: "1", b: "2", c: "3" };
-assertEqual(eqObjects(ab, abc),true); // => false
+assertObjectsEqual(ab, abc); // => false
 
 const cd = { c: "1", d: ["2", 3]};
 const dc = { d: ["2", 3], c: "1" };
-assertEqual(eqObjects(cd, dc), true); // => true
+assertObjectsEqual(cd, dc); // => true
 
 const cd2 = { c: "1", d: ["2", 3, 4] };
-assertEqual(eqObjects(cd, cd2),true); // => false
+assertObjectsEqual(cd, cd2); // => false
