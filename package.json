@@ -1,7 +1,7 @@
 {
-  "name": "lotide",
+  "name": "@vvalentinv/lotide",
   "version": "1.0.0",
-  "description": "",
+  "description": "Lotide is a library designed to simplify working with arrays, numbers, objects, strings, etc. published for learning purpose",
   "main": "assertArraysEqual.js",
   "directories": {
     "test": "test"
@@ -13,7 +13,7 @@
     "type": "git",
     "url": "git+https://github.com/vvalentinv/lotide.git"
   },
-  "author": "",
+  "author": "Valentin-Gabriel Vlad",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/vvalentinv/lotide/issues"
@@ -22,5 +22,8 @@
   "devDependencies": {
     "chai": "^4.3.4",
     "mocha": "^9.1.3"
+  },
+  "dependencies": {
+    "lotide": "^1.0.1"
   }
 }
