@@ -1,11 +1,7 @@
 const eqArrays = function(actual, expected) {
-  let eqArr = false;
-  for (const elem of actual) {
-    for (const el of expected) {
-      if (el === elem)
-        eqArr = true;
-    }
-    if (!eqArr)
+  let eqArr = true;
+  for (let i = 0; i < actual.length; i++) {
+    if (actual[i] !== expected[i])
       return false;
   }
   return eqArr;
