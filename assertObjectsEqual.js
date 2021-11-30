@@ -17,13 +17,13 @@ const eqArrays = function(actual, expected) {
 const findKeyByValue = function(obj, val) {
   for (const key in obj) {
     if (Array.isArray(obj[key])) {
-      if (eqArrays(obj[key],val))
+      if (eqArrays(obj[key], val))
         return key;
     } else {
       if (obj[key] === val)
         return key;
     }
-      
+
   }
   return undefined;
 };
@@ -33,7 +33,7 @@ const findKeyByValue = function(obj, val) {
 const assertObjectsEqual = function(actual, expected) {
   // Implement me!
   const inspect = require('util').inspect;
-  eqObjects(actual,expected) ? console.log(`✅✅✅ Assertion Passed:\n[object ${inspect(actual)}]\n[object ${inspect(expected)}]`)
+  eqObjects(actual, expected) ? console.log(`✅✅✅ Assertion Passed:\n[object ${inspect(actual)}]\n[object ${inspect(expected)}]`)
     : console.log(`🛑🛑🛑 Assertion Failed:\n[object ${inspect(actual)}]\n[object ${inspect(expected)}]`);
 
 };
@@ -45,11 +45,11 @@ const eqObjects = function(object1, object2) {
   if (Object.keys(object1).length !== Object.keys(object2).length)
     return false;
   for (const key1 in object1) {
-    const keyAtObject2 = findKeyByValue(object2,object1[key1]);
+    const keyAtObject2 = findKeyByValue(object2, object1[key1]);
     if (!keyAtObject2)
       return false;
     if (Array.isArray(object1[key1])) {
-      if (eqArrays(object1[key1],object2[keyAtObject2]))
+      if (eqArrays(object1[key1], object2[keyAtObject2]))
         isEqual = true;
     } else {
       if (object1[key1] === object2[keyAtObject2])
@@ -73,9 +73,11 @@ assertObjectsEqual(ab, ba); // => true
 const abc = { a: "1", b: "2", c: "3" };
 assertObjectsEqual(ab, abc); // => false
 
-const cd = { c: "1", d: ["2", 3]};
+const cd = { c: "1", d: ["2", 3] };
 const dc = { d: ["2", 3], c: "1" };
 assertObjectsEqual(cd, dc); // => true
 
 const cd2 = { c: "1", d: ["2", 3, 4] };
 assertObjectsEqual(cd, cd2); // => false
+
+module.exports = assertObjectsEqual;

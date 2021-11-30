@@ -21,13 +21,13 @@ const eqArrays = function(actual, expected) {
 const findKeyByValue = function(obj, val) {
   for (const key in obj) {
     if (Array.isArray(obj[key])) {
-      if (eqArrays(obj[key],val))
+      if (eqArrays(obj[key], val))
         return key;
     } else {
       if (obj[key] === val)
         return key;
     }
-      
+
   }
   return undefined;
 };
@@ -39,12 +39,12 @@ const eqObjects = function(object1, object2) {
   if (Object.keys(object1).length !== Object.keys(object2).length)
     return false;
   for (const key1 in object1) {
-    const keyAtObject2 = findKeyByValue(object2,object1[key1]);
+    const keyAtObject2 = findKeyByValue(object2, object1[key1]);
     if (!keyAtObject2)
       return false;
     if (Array.isArray(object1[key1])) {
       console.log(object2[keyAtObject2]);
-      if (eqArrays(object1[key1],object2[keyAtObject2]))
+      if (eqArrays(object1[key1], object2[keyAtObject2]))
         isEqual = true;
     } else {
       if (object1[key1] === object2[keyAtObject2])
@@ -64,14 +64,16 @@ assertEqual(1, 1);
 
 const ab = { a: "1", b: "2" };
 const ba = { b: "2", a: "1" };
-assertEqual(eqObjects(ab, ba),true); // => true
+assertEqual(eqObjects(ab, ba), true); // => true
 
 const abc = { a: "1", b: "2", c: "3" };
-assertEqual(eqObjects(ab, abc),true); // => false
+assertEqual(eqObjects(ab, abc), true); // => false
 
-const cd = { c: "1", d: ["2", 3]};
+const cd = { c: "1", d: ["2", 3] };
 const dc = { d: ["2", 3], c: "1" };
 assertEqual(eqObjects(cd, dc), true); // => true
 
 const cd2 = { c: "1", d: ["2", 3, 4] };
-assertEqual(eqObjects(cd, cd2),true); // => false
+assertEqual(eqObjects(cd, cd2), true); // => false
+
+module.exports = eqObjects;

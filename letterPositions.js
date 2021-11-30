@@ -17,10 +17,10 @@ const letterPositions = function(sentence) {
   const result = {};
   for (letter of sentence) {
     //console.log(letter);
-  
+
     let arr = [];
     for (let i = 0; i < sentence.length; i++) {
-      
+
       if (letter === sentence[i])
         arr.push(i);
     }
@@ -45,3 +45,5 @@ assertEqual(eqArrays(result1["u"], [7, 20]), true);
 assertEqual(eqArrays(result1["s"], [8, 21]), true);
 assertEqual(eqArrays(result1["e"], [9, 16, 22]), true);
 assertEqual(eqArrays(result1["n"], [12]), true);
+
+module.exports = letterPositions;
